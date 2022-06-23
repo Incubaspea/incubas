@@ -146,7 +146,7 @@ class _AuthenState extends State<Authen> {
 
   Future<void> processCheckLogin() async {
     String path =
-        'https://www.androidthai.in.th/egat/getUserWhereUserUng.php?isAdd=true&user=$user';
+        'https://www.androidthai.in.th/egat/getUserWhereUser_Incubas.php?isAdd=true&user=$user';
     await Dio().get(path).then((value) {
       print('value ==> $value');
       if (value.toString() == 'null') {

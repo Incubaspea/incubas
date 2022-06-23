@@ -4,6 +4,7 @@ import 'package:kritegat/bodys/non_finish_job.dart';
 import 'package:kritegat/utility/my_constant.dart';
 import 'package:kritegat/utility/my_dialog.dart';
 import 'package:kritegat/widget/show_icon_button.dart';
+import 'package:kritegat/widget/show_progress.dart';
 import 'package:kritegat/widget/show_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,24 +16,35 @@ class Myservice extends StatefulWidget {
 }
 
 class _MyserviceState extends State<Myservice> {
-  var title = <String>['Non Finish', 'Finish', 'จบการทำงาน'];
+  var title = <String>[
+    'Non Finish',
+    'Finish',
+  ];
   var iconDatas = <IconData>[
     Icons.close,
     Icons.done,
-    Icons.menu,
   ];
-  var widgets = <Widget>[
-    const NonFinishJoB(),
-    const FinishJob(),
-    const NonFinishJoB(),
-  ];
+  var widgets = <Widget>[];
   var bottonNavigator = <BottomNavigationBarItem>[];
   int indexbodys = 0;
 
   @override
   void initState() {
     super.initState();
+    creatNavbar();
+    processFindUserLogin();
+  }
 
+  Future<void> processFindUserLogin() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    var dataLogins = preferences.getStringList('data');
+    print('dataLogins ==> $dataLogins');
+    widgets.add(NonFinishJoB(dataUserLogins: dataLogins!));
+    widgets.add(FinishJob());
+    setState(() {});
+  }
+
+  void creatNavbar() {
     for (var i = 0; i < title.length; i++) {
       bottonNavigator.add(
         BottomNavigationBarItem(
@@ -50,7 +62,7 @@ class _MyserviceState extends State<Myservice> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: newAppBar(context),
-      body: widgets[indexbodys],
+      body: widgets.isEmpty ? const ShowProgress() : widgets[indexbodys],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: indexbodys,
         items: bottonNavigator,
@@ -65,9 +77,10 @@ class _MyserviceState extends State<Myservice> {
 
   AppBar newAppBar(BuildContext context) {
     return AppBar(
+      centerTitle: true,
       title: ShowText(
         text: title[indexbodys],
-        textStyle: MyConstant().h1Style(),
+        textStyle: MyConstant().h1Style6(),
       ),
       elevation: 0,
       foregroundColor: MyConstant.dark,
