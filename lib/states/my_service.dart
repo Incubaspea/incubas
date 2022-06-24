@@ -40,7 +40,7 @@ class _MyserviceState extends State<Myservice> {
     var dataLogins = preferences.getStringList('data');
     print('dataLogins ==> $dataLogins');
     widgets.add(NonFinishJoB(dataUserLogins: dataLogins!));
-    widgets.add(FinishJob());
+    widgets.add(FinishJob(idofficer: dataLogins[3]));
     setState(() {});
   }
 

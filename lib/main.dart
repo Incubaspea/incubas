@@ -26,7 +26,7 @@ Future<void> main() async {
     firstState = '/myService';
     runApp(MyApp());
   }
-  runApp(MyApp());
+ 
 }
 
 //สร้าง stateless MaterialApp

@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -73,7 +74,7 @@ class _AuthenState extends State<Authen> {
             MyDialog(context: context).normalDialog(
                 title: 'Have space', subTitle: 'Please Fill Blank');
           } else {
-            print("NO Space");
+            print("## NO Space");
             processCheckLogin();
           }
         },
@@ -147,8 +148,12 @@ class _AuthenState extends State<Authen> {
   Future<void> processCheckLogin() async {
     String path =
         'https://www.androidthai.in.th/egat/getUserWhereUser_Incubas.php?isAdd=true&user=$user';
+
+    print('Process Work $path');
+
     await Dio().get(path).then((value) {
-      print('value ==> $value');
+      print('## value ==> $value');
+
       if (value.toString() == 'null') {
         MyDialog(context: context).normalDialog(
             title: 'User False', subTitle: '$user in my Database');
@@ -167,6 +172,7 @@ class _AuthenState extends State<Authen> {
                   data.add(userMode.id);
                   data.add(userMode.name);
                   data.add(userMode.position);
+                  data.add(userMode.user);
 
                   preferences.setStringList('data', data).then((value) {
                     Navigator.pushAndRemoveUntil(
