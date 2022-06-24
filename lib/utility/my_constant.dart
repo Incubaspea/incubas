@@ -74,7 +74,7 @@ class MyConstant {
   TextStyle h1Style6() {
     return GoogleFonts.athiti(
       textStyle: TextStyle(
-        fontSize: 28,
+        fontSize: 16,
         color: Bas,
         fontWeight: FontWeight.bold,
       ),

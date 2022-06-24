@@ -1,4 +1,4 @@
-package com.ThaKrit.Incubas
+package com.ThaKrit.kritegat
 
 import io.flutter.embedding.android.FlutterActivity
 

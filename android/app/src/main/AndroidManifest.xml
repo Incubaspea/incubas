@@ -1,9 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ThaKrit.kritegat">
+    package="com.ThaKrit.Incubas">
    <application
         android:label="kritegat"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyD4-mfLbjobL2BaQ8piuFCuDCmgK8RuNmg"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
